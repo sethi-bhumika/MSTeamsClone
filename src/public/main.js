@@ -1,9 +1,11 @@
-let divSelectRoom = document.getElementById("selectRoom");
+//getting inputs from HTML
+let divSelectRoom = document.getElementById("selectRoom"); //initial room to enter room number
 let divConsultingRoom = document.getElementById("consultingRoom");
 const buttonGoRoom = document.getElementById("goRoom");
 const inputRoomNumber = document.getElementById("roomNumber");
 let localVideo = document.getElementById("localVideo");
 let remoteVideo = document.getElementById("remoteVideo");
+let divFullRoom = document.getElementById("fullRoom");
 
 let roomNumber, localStream, remoteStream, rtcPeerConnection, isCaller;
 
@@ -26,22 +28,24 @@ buttonGoRoom.onclick = async function () {
     alert("please enter room name");
   } else {
     roomNumber = inputRoomNumber.value;
-    socket.emit("create or join", roomNumber);
+    socket.emit("create or join", roomNumber); //create or join depending on the status of the room
     divSelectRoom.style = "display: none";
     divConsultingRoom.style = "display: block";
   }
 };
 
 socket.on("created", async function (room) {
-  localStream = await navigator.mediaDevices.getUserMedia(streamConstraints);
+  //called when a room is created for the first time
+  localStream = await navigator.mediaDevices.getUserMedia(streamConstraints); //webRTC API call getUserMedia()
   localVideo.srcObject = localStream;
-  isCaller = true;
+  isCaller = true; //to determine if the user is the caller or the callee
 });
 
 socket.on("joined", async function (room) {
   localStream = await navigator.mediaDevices.getUserMedia(streamConstraints);
   localVideo.srcObject = localStream;
   socket.emit("ready", roomNumber);
+  isFull = false;
 });
 
 //caller handler
