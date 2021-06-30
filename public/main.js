@@ -9,11 +9,25 @@ let divFullRoom = document.getElementById("fullRoom");
 
 let roomNumber, localStream, remoteStream, rtcPeerConnection, isCaller;
 
-const iceServers = {
-  iceServer: [
-    { urls: "stun:stun.services.mozilla.com" },
-    { urls: "stun:stun.l.google.com:19302" },
-  ],
+const getIceServer = () => {
+  return {
+    iceServers: [
+      { urls: ["stun:bn-turn1.xirsys.com"] },
+      {
+        username:
+          "QJ492G5MAT33YCpGAU9WenKSzTFA_HHYFgdTOwGnUdFdr5HV6zB3fd49tiMBGfRyAAAAAGDcIHFiaHM2NzIwMDE=",
+        credential: "bfb00836-d976-11eb-8091-0242ac140004",
+        urls: [
+          "turn:bn-turn1.xirsys.com:80?transport=udp",
+          "turn:bn-turn1.xirsys.com:3478?transport=udp",
+          "turn:bn-turn1.xirsys.com:80?transport=tcp",
+          "turn:bn-turn1.xirsys.com:3478?transport=tcp",
+          "turns:bn-turn1.xirsys.com:443?transport=tcp",
+          "turns:bn-turn1.xirsys.com:5349?transport=tcp",
+        ],
+      },
+    ],
+  };
 };
 
 const streamConstraints = {

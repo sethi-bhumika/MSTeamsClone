@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
-  <title>WebRTC PeerToPeer</title>
+  <title>WebRTC Multi-User Video Conference</title>
 </head>
 <body>
-  <h1>WebRTC PeerToPeer</h1>
+  <h1>WebRTC Multi-User Video Conference</h1>
   <div id="selectRoom">
     <label for="room">Enter Room Name</label>
     <input id="roomNumber" type="text" />
@@ -14,5 +14,6 @@
     <video id="remoteVideo" autoplay></video>
   </div>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="adapter.js"></script>
   <script src="main.js"></script>
 </body>
