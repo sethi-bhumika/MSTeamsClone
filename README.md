@@ -13,3 +13,5 @@ To run the web app on local host:
 - Install the dependencies in the package.json by running ```npm install``` command or installing them manually as specified above.
 - Change the directory to ```src``` and run ```node app.js```
 - Open and view the webapp on localhost:5000
+
+Deployed at https://videochatms.herokuapp.com/
