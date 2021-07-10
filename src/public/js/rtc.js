@@ -276,5 +276,26 @@ window.addEventListener("load", () => {
 
       broadcastNewTracks(myStream, "audio");
     });
+    document.getElementById("toggle-video").addEventListener("click", (e) => {
+      e.preventDefault();
+
+      let elem = document.getElementById("toggle-video");
+
+      if (myStream.getVideoTracks()[0].enabled) {
+        e.target.classList.remove("fa-video");
+        e.target.classList.add("fa-video-slash");
+        elem.setAttribute("title", "Show Video");
+
+        myStream.getVideoTracks()[0].enabled = false;
+      } else {
+        e.target.classList.remove("fa-video-slash");
+        e.target.classList.add("fa-video");
+        elem.setAttribute("title", "Hide Video");
+
+        myStream.getVideoTracks()[0].enabled = true;
+      }
+
+      broadcastNewTracks(myStream, "video");
+    });
   }
 });
