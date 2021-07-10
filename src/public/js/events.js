@@ -42,7 +42,7 @@ window.addEventListener("load", () => {
       document.querySelector(
         "#room-created"
       ).innerHTML = `Room successfully created. Click <a href='${roomLink}'>here</a> to enter room. 
-                Share the room link with your partners.`;
+                Share the room link with your friends: <a href='${roomLink}'>${roomLink}</a>`;
 
       //empty the values
       document.querySelector("#room-name").value = "";
@@ -81,7 +81,7 @@ window.addEventListener("load", () => {
     }
   });
 
-  /* document.getElementById("closeModal").addEventListener("click", () => {
+  document.getElementById("closeModal").addEventListener("click", () => {
     helpers.toggleModal("recording-options-modal", false);
-  }); */
+  });
 });

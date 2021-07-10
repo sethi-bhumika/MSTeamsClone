@@ -201,14 +201,6 @@ export default {
     }
   },
 
-  saveRecordedStream(stream, user) {
-    let blob = new Blob(stream, { type: "video/webm" });
-
-    let file = new File([blob], `${user}-${moment().unix()}-record.webm`);
-
-    saveAs(file);
-  },
-
   toggleModal(id, show) {
     let el = document.getElementById(id);
 
@@ -319,5 +311,13 @@ export default {
       shareIconElem.children[0].classList.add("text-white");
       shareIconElem.children[0].classList.remove("text-primary");
     }
+  },
+
+  saveRecordedStream(stream, user) {
+    let blob = new Blob(stream, { type: "video/webm" });
+
+    let file = new File([blob], `${user}-${moment().unix()}-record.webm`);
+
+    saveAs(file);
   },
 };

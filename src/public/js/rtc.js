@@ -197,17 +197,17 @@ window.addEventListener("load", () => {
           newVid.className = "remote-video";
 
           //video controls elements
-          /*let controlDiv = document.createElement("div");
+          let controlDiv = document.createElement("div");
           controlDiv.className = "remote-video-controls";
-          controlDiv.innerHTML = `<i class="fa fa-microphone text-white pr-3 mute-remote-mic" title="Mute"></i>
-                        <i class="fa fa-expand text-white expand-remote-video" title="Expand"></i>`;*/
+          controlDiv.innerHTML = `<i class="fa fa-microphone pr-3 text-black mute-remote-mic" title="Mute"></i>
+                        <i class="fa fa-expand expand-remote-video" title="Expand"></i>`;
 
           //create a new div for card
           let cardDiv = document.createElement("div");
           cardDiv.className = "card card-sm";
           cardDiv.id = partnerName;
           cardDiv.appendChild(newVid);
-          //cardDiv.appendChild(controlDiv);
+          cardDiv.appendChild(controlDiv);
 
           //put div in main-section elem
           document.getElementById("videos").appendChild(cardDiv);
@@ -239,22 +239,6 @@ window.addEventListener("load", () => {
       };
     }
 
-    function broadcastNewTracks(stream, type, mirrorMode = true) {
-      h.setLocalStream(stream, mirrorMode);
-
-      let track =
-        type == "audio"
-          ? stream.getAudioTracks()[0]
-          : stream.getVideoTracks()[0];
-
-      for (let p in pc) {
-        let pName = pc[p];
-
-        if (typeof pc[pName] == "object") {
-          h.replaceTrack(track, pc[pName]);
-        }
-      }
-    }
     document.getElementById("toggle-mute").addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -276,6 +260,7 @@ window.addEventListener("load", () => {
 
       broadcastNewTracks(myStream, "audio");
     });
+
     document.getElementById("toggle-video").addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -296,20 +281,6 @@ window.addEventListener("load", () => {
       }
 
       broadcastNewTracks(myStream, "video");
-    });
-
-    document.getElementById("share-screen").addEventListener("click", (e) => {
-      e.preventDefault();
-
-      if (
-        screen &&
-        screen.getVideoTracks().length &&
-        screen.getVideoTracks()[0].readyState != "ended"
-      ) {
-        stopSharingScreen();
-      } else {
-        shareScreen();
-      }
     });
 
     function shareScreen() {
@@ -357,6 +328,23 @@ window.addEventListener("load", () => {
         });
     }
 
+    function broadcastNewTracks(stream, type, mirrorMode = true) {
+      h.setLocalStream(stream, mirrorMode);
+
+      let track =
+        type == "audio"
+          ? stream.getAudioTracks()[0]
+          : stream.getVideoTracks()[0];
+
+      for (let p in pc) {
+        let pName = pc[p];
+
+        if (typeof pc[pName] == "object") {
+          h.replaceTrack(track, pc[pName]);
+        }
+      }
+    }
+
     document.getElementById("share-screen").addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -368,6 +356,74 @@ window.addEventListener("load", () => {
         stopSharingScreen();
       } else {
         shareScreen();
+      }
+    });
+
+    function toggleRecordingIcons(isRecording) {
+      let e = document.getElementById("record");
+
+      if (isRecording) {
+        e.setAttribute("title", "Stop recording");
+        e.children[0].classList.add("text-danger");
+        e.children[0].classList.remove("text-white");
+      } else {
+        e.setAttribute("title", "Record");
+        e.children[0].classList.add("text-white");
+        e.children[0].classList.remove("text-danger");
+      }
+    }
+
+    function startRecording(stream) {
+      mediaRecorder = new MediaRecorder(stream, {
+        mimeType: "video/webm;codecs=vp9",
+      });
+
+      mediaRecorder.start(1000);
+      toggleRecordingIcons(true);
+
+      mediaRecorder.ondataavailable = function (e) {
+        recordedStream.push(e.data);
+      };
+
+      mediaRecorder.onstop = function () {
+        toggleRecordingIcons(false);
+
+        h.saveRecordedStream(recordedStream, username);
+
+        setTimeout(() => {
+          recordedStream = [];
+        }, 3000);
+      };
+
+      mediaRecorder.onerror = function (e) {
+        console.error(e);
+      };
+    }
+    document.getElementById("record").addEventListener("click", (e) => {
+      /**
+       * Ask user what they want to record.
+       * Get the stream based on selection and start recording
+       */
+      if (!mediaRecorder || mediaRecorder.state == "inactive") {
+        h.toggleModal("recording-options-modal", true);
+      } else if (mediaRecorder.state == "paused") {
+        mediaRecorder.resume();
+      } else if (mediaRecorder.state == "recording") {
+        mediaRecorder.stop();
+      }
+    });
+
+    document.getElementById("record-screen").addEventListener("click", () => {
+      h.toggleModal("recording-options-modal", false);
+
+      if (screen && screen.getVideoTracks().length) {
+        startRecording(screen);
+      } else {
+        h.shareScreen()
+          .then((screenStream) => {
+            startRecording(screenStream);
+          })
+          .catch(() => {});
       }
     });
   }
