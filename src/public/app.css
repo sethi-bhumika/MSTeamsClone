@@ -13,6 +13,16 @@ body {
   color: #aaa;
 }
 
+.navbar-custom {
+  background-color: #7b4bd4;
+  color: white;
+}
+
+.btn-variant {
+  background-color: #7b4bd4;
+  color: white;
+}
+
 .simple-container {
   max-width: 675px;
   margin: 0 auto;

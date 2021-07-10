@@ -136,7 +136,7 @@ window.addEventListener("load", () => {
 
       if (screen && screen.getTracks().length) {
         screen.getTracks().forEach((track) => {
-          pc[partnerName].addTrack(track, screen); //should trigger negotiationneeded event
+          pc[partnerName].addTrack(track, screen);
         });
       } else if (myStream) {
         myStream.getTracks().forEach((track) => {
