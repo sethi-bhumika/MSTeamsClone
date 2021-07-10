@@ -255,5 +255,26 @@ window.addEventListener("load", () => {
         }
       }
     }
+    document.getElementById("toggle-mute").addEventListener("click", (e) => {
+      e.preventDefault();
+
+      let elem = document.getElementById("toggle-mute");
+
+      if (myStream.getAudioTracks()[0].enabled) {
+        e.target.classList.remove("fa-microphone-alt");
+        e.target.classList.add("fa-microphone-alt-slash");
+        elem.setAttribute("title", "Unmute");
+
+        myStream.getAudioTracks()[0].enabled = false;
+      } else {
+        e.target.classList.remove("fa-microphone-alt-slash");
+        e.target.classList.add("fa-microphone-alt");
+        elem.setAttribute("title", "Mute");
+
+        myStream.getAudioTracks()[0].enabled = true;
+      }
+
+      broadcastNewTracks(myStream, "audio");
+    });
   }
 });
