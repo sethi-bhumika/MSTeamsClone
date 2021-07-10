@@ -413,6 +413,20 @@ window.addEventListener("load", () => {
       }
     });
 
+    document.getElementById("record-video").addEventListener("click", () => {
+      h.toggleModal("recording-options-modal", false);
+
+      if (myStream && myStream.getTracks().length) {
+        startRecording(myStream);
+      } else {
+        h.getUserFullMedia()
+          .then((videoStream) => {
+            startRecording(videoStream);
+          })
+          .catch(() => {});
+      }
+    });
+
     document.getElementById("record-screen").addEventListener("click", () => {
       h.toggleModal("recording-options-modal", false);
 
