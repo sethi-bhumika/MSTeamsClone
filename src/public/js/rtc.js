@@ -199,8 +199,8 @@ window.addEventListener("load", () => {
           //video controls elements
           let controlDiv = document.createElement("div");
           controlDiv.className = "remote-video-controls";
-          controlDiv.innerHTML = `<i class="fa fa-microphone pr-3 text-black mute-remote-mic" title="Mute"></i>
-                        <i class="fa fa-expand expand-remote-video" title="Expand"></i>`;
+          controlDiv.innerHTML = `
+                        <i class="fa fa-thumbtack expand-remote-video" title="Pin to screen"></i>`;
 
           //create a new div for card
           let cardDiv = document.createElement("div");
