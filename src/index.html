@@ -42,7 +42,7 @@
         toolbar_location: "bottom",
         menubar: false,
         height: "100",
-        width: "83%",
+        width: "90%",
       });
     </script>
     <script src="public/js/autolink.js"></script>
@@ -220,25 +220,21 @@
           </div>
 
           <div id="chat-messages"></div>
+          <button class="btn btn-danger" id="chat-input-submit">Enter</button>
 
-          <div class="row" style="margin-top: 5vh; margin-left: 0.5vw">
-            <!--<input
-              type="text"
+          <div class="row col-12">
+            <input type="text" id="chat-input" placeholder="Chat here" />
+          </div>
+          <!--<textarea
               id="chat-input"
               class="form-control rounded-0"
-              placeholder="Chat here"
-            />-->
-            <textarea
-              id="chat-input"
-              class="form-control rounded-0"
-              rows="2"
+              rows="1"
               placeholder="Type here..."
-            ></textarea>
-            <button id="chat-input-submit">Enter</button>
-          </div>
-          <div class="row" style="margin-left: 0.5vw; margin-top: 1vh">
+            ></textarea>-->
+
+          <!--<div class="row" style="margin-left: 0.5vw; margin-top: 1vh">
             Developed for MSEngage2021
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
