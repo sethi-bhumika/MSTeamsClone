@@ -3,7 +3,7 @@ import h from "./helpers.js";
 window.addEventListener("load", () => {
   const room = h.getQString(location.href, "room");
   const username = sessionStorage.getItem("username");
-
+  console.log("Start");
   if (!room) {
     document.querySelector("#room-create").attributes.removeNamedItem("hidden");
   } else if (!username) {
@@ -99,9 +99,9 @@ window.addEventListener("load", () => {
         }
       });
 
-      /* socket.on("chat", (data) => {
+      socket.on("chat", (data) => {
         h.addChat(data, "remote");
-      }); */
+      });
     });
 
     function getAndSetUserStream() {
@@ -124,11 +124,11 @@ window.addEventListener("load", () => {
         sender: username,
       };
 
-      /* //emit chat message
+      //emit chat message
       socket.emit("chat", data);
 
       //add localchat
-      h.addChat(data, "local"); */
+      h.addChat(data, "local");
     }
 
     function init(createOffer, partnerName) {
@@ -440,5 +440,12 @@ window.addEventListener("load", () => {
           .catch(() => {});
       }
     });
+
+    document
+      .getElementById("chat-input-submit")
+      .addEventListener("click", () => {
+        sendMsg(tinymce.get("chat-input").getContent({ format: "text" }));
+        tinymce.get("chat-input").setContent("<p></p>");
+      });
   }
 });

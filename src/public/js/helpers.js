@@ -112,7 +112,7 @@ export default {
     };
   },
 
-  /* addChat(data, senderType) {
+  addChat(data, senderType) {
     let chatMsgDiv = document.querySelector("#chat-messages");
     let contentAlign = "justify-content-end";
     let senderName = "You";
@@ -146,7 +146,6 @@ export default {
 
     chatMsgDiv.appendChild(rowDiv);
 
-    
     if (this.pageHasFocus) {
       rowDiv.scrollIntoView();
     }
@@ -164,7 +163,7 @@ export default {
         .querySelector("#new-chat-notification")
         .removeAttribute("hidden");
     }
-  }, */
+  },
 
   replaceTrack(stream, recipientPeer) {
     let sender = recipientPeer.getSenders

@@ -18,6 +18,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="public/app.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css"
+    />
 
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="public/js/rtc.js"></script>
@@ -30,7 +34,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script src="https://cdn.rawgit.com/yahoo/xss-filters/master/dist/xss-filters.js"></script>
-    <!--<script src='assets/js/autolink.js'></script>-->
+    <script
+      src="https://cdn.tiny.cloud/1/kgagji3k6j2xunlsxogo2z1eos1si4xmoir2l1big2ldlvlg/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <script>
+      tinymce.init({
+        selector: "#chat-input",
+        plugins: "emoticons",
+        toolbar: "emoticons",
+        toolbar_location: "bottom",
+        menubar: false,
+        height: "100",
+        width: "83%",
+      });
+    </script>
+    <script src="public/js/autolink.js"></script>
   </head>
 
   <body>
@@ -199,24 +218,30 @@
           <div class="row mt-2 mb-2" id="videos"></div>
         </div>
 
-        <div
-          class="col-md-3 chat-col d-print-none mb-2 bg-info"
-          id="chat-pane"
-          hidden
-        >
+        <div class="col-md-3 chat-col d-print-none mb-2" id="chat-pane" hidden>
           <div class="row">
-            <div class="col-12 text-center h2 mb-3">CHAT</div>
+            <div class="col-12 text-center h5 mb-3">Chat</div>
           </div>
 
           <div id="chat-messages"></div>
 
-          <div class="row">
+          <div class="row" style="margin-top: 5vh; margin-left: 0.5vw">
+            <!--<input
+              type="text"
+              id="chat-input"
+              class="form-control rounded-0"
+              placeholder="Chat here"
+            />-->
             <textarea
               id="chat-input"
-              class="form-control rounded-0 chat-box border-info"
-              rows="3"
+              class="form-control rounded-0"
+              rows="2"
               placeholder="Type here..."
             ></textarea>
+            <button id="chat-input-submit">Enter</button>
+          </div>
+          <div class="row" style="margin-left: 0.5vw; margin-top: 1vh">
+            Developed for MSEngage2021
           </div>
         </div>
       </div>
