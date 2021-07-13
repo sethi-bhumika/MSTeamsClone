@@ -30,7 +30,8 @@ Features:
 - Recording(video/screen)
 - Live chat(text, emoticons and autolink)
 
-For detailed documentation, see:
+For detailed documentation, see: [Design Document][https://github.com/sethi-bhumika/msteamsclone/blob/main/doc/design%20doc.pdf]
+
 For a video demo, watch at:
 
-This project was made as a part of Microsoft Engage 2021 Mentorship programme, following principles of Agile Methodology. Agile refers to software development through iterations, with periodic assessment of evolving requirements and solutions. Here's a spreadsheet reflecting my journey on this project with Agile: https://docs.google.com/spreadsheets/d/1cAnzuieLmUEmXEBZevFEVUsAdBVbhjZu6dmnr5HYp4g/edit?usp=sharing
+This project was made as a part of Microsoft Engage 2021 Mentorship programme, following principles of Agile Methodology. Agile refers to software development through iterations, with periodic assessment of evolving requirements and solutions. Here's a spreadsheet reflecting my journey on this project with Agile: [this][https://docs.google.com/spreadsheets/d/1canzuielmuemxebzevfevusadbvbhjzu6dmnr5hyp4g/edit?usp=sharing]
