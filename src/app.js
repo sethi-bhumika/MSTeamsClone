@@ -4,7 +4,6 @@ let server = require("http").Server(app);
 let io = require("socket.io")(server);
 let stream = require("./public/stream");
 let path = require("path");
-const emoji = require("node-emoji");
 
 const port = process.env.PORT || 5000;
 

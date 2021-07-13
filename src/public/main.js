@@ -426,6 +426,7 @@ window.addEventListener("load", () => {
           })
           .catch(() => {});
       }
+      alert("Your video is now being recorded!");
     });
 
     document.getElementById("record-screen").addEventListener("click", () => {
@@ -434,11 +435,12 @@ window.addEventListener("load", () => {
       if (screen && screen.getVideoTracks().length) {
         startRecording(screen);
       } else {
-        h.shareScreen()
+        /* h.shareScreen()
           .then((screenStream) => {
             startRecording(screenStream);
           })
-          .catch(() => {});
+          .catch(() => {}); */
+        alert("Start screen sharing first!");
       }
     });
 
@@ -448,5 +450,15 @@ window.addEventListener("load", () => {
         sendMsg(tinymce.get("chat-input").getContent({ format: "text" }));
         tinymce.get("chat-input").setContent("<p></p>");
       });
+
+    /* document.getElementById("leave-call").addEventListener("click", () => {
+      document.querySelector("#main-section").setAttribute("hidden", true);
+      document.querySelector("#local").setAttribute("hidden", true);
+      myStream.getVideoTracks()[0].enabled = false;
+      for (let i = 0; i < pc.length; i++) {
+        document.getElementById(elemId).remove();
+        this.adjustVideoElemSize();
+      }
+    }); */
   }
 });
