@@ -25,7 +25,7 @@ Features:
 - Video turn on/off
 - Mute/unmute user audio
 - Pin screen
-- Picture in picture(floating video, on Google Chrome)
+- Picture in picture(floating video)
 - Screen sharing(Entire screen/tab/window)
 - Recording(video/screen)
 - Live chat(text, emoticons and autolink)
@@ -33,6 +33,4 @@ Features:
 For detailed documentation, see:
 For a video demo, watch at:
 
-This project was made as a part of Microsoft Engage 2021 Mentorship programme, following principles of Agile Methodology. Agile refers to software development through iterations, with periodic assessment of evoloving requirements and solutions. Here's a spreadsheet reflecting my journey on this project with Agile: https://docs.google.com/spreadsheets/d/1cAnzuieLmUEmXEBZevFEVUsAdBVbhjZu6dmnr5HYp4g/edit?usp=sharing
-
-CSS credits: Zach Saucier https://gist.github.com/ZachSaucier/8295d9dc926d7064ff0d4f3f04b35b55
+This project was made as a part of Microsoft Engage 2021 Mentorship programme, following principles of Agile Methodology. Agile refers to software development through iterations, with periodic assessment of evolving requirements and solutions. Here's a spreadsheet reflecting my journey on this project with Agile: https://docs.google.com/spreadsheets/d/1cAnzuieLmUEmXEBZevFEVUsAdBVbhjZu6dmnr5HYp4g/edit?usp=sharing
