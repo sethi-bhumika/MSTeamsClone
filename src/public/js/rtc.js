@@ -354,6 +354,7 @@ window.addEventListener("load", () => {
         screen.getVideoTracks()[0].readyState != "ended"
       ) {
         stopSharingScreen();
+        screen = "";
       } else {
         shareScreen();
       }
